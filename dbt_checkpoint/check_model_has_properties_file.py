@@ -25,6 +25,12 @@ def has_properties_file(
 
     # get manifest nodes that pre-commit found as changed
     models = get_models(manifest, filenames, include_disabled=include_disabled)
+    
+    for model in models:
+        print("filename: " + model.filename)
+        patch_path = model.node.get("patch_path", "")
+        print("patch_path: " + patch_path)
+        
     # convert to sets
     in_models = {model.filename for model in models if model.node.get("patch_path")}
     print(in_models)
